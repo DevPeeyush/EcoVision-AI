@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+.venv/
+env/
+.env/
+
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Project Specific
+data/datasets/
+outputs/*
+!outputs/*.pth
+!outputs/*.pt
+# report/*.pdf (Allow pushing compiled PDF report to GitHub)
+report/*.log
+report/*.aux
+report/*.synctex.gz
+
+# Ignore demo video due to GitHub 100MB size limit
+Project_Demo_Video.mp4
+
