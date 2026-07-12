@@ -89,11 +89,11 @@ For step-by-step instructions on containerizing with Docker or deploying to AWS,
 ## 📋 GitHub Submission Checklist
 
 Before submitting the project, verify that all eight core requirements are fulfilled:
-1. **[x] Clean Repository:** Code contains organized folders, `README.md`, and clean dependency specifications.
-2. **[x] Data Ingestion:** Automates downloads using KaggleHub and mitigates spatial leakage using contiguous index splits.
-3. **[x] Baseline Model:** A 3-layer scratch CNN model is included with training pipelines and accuracy checks.
-4. **[x] Fine-Tuned Model:** A fine-tuned ResNet18 model is saved at `outputs/checkpoints/resnet18_best.pth`.
-5. **[x] Change Detection:** Stripped backbone model extracts 512-D embeddings and computes similarity maps.
-6. **[x] Geo-Dashboard:** Interactive Streamlit app runs locally on port 8501.
-7. **[x] Unit Tests:** Passes automated verification (`tests/test_pipeline.py`).
-8. **[x] Final Report & Video:** Formal PDF report compiled from `report/REPORT.md` is ready ([REPORT.pdf](file:///d:/Main%20Project/report/REPORT.pdf)). (Note: 3-minute screen recording of the live dashboard to be recorded by user locally).
+1. **Clean Repository:** Code contains organized folders, `README.md`, and clean dependency specifications.
+2. **Data Ingestion:** Automates downloads using KaggleHub and mitigates spatial leakage using contiguous index splits.
+3. **Baseline Model:** A 3-layer scratch CNN model is included with training pipelines and accuracy checks.
+4. **Fine-Tuned Model:** A fine-tuned ResNet18 model is saved at `outputs/checkpoints/resnet18_best.pth`.
+5. **Change Detection:** Stripped backbone model extracts 512-D embeddings and computes similarity maps.
+6. **Geo-Dashboard:** Interactive Streamlit app runs locally on port 8501.
+7. **Unit Tests:** Passes automated verification (`tests/test_pipeline.py`).
+8. **Final Report & Video:** Formal PDF report compiled from `report/REPORT.pdf`
