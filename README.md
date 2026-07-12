@@ -97,3 +97,4 @@ Before submitting the project, verify that all eight core requirements are fulfi
 6. **Geo-Dashboard:** Interactive Streamlit app runs locally on port 8501.
 7. **Unit Tests:** Passes automated verification (`tests/test_pipeline.py`).
 8. **Final Report & Video:** Formal PDF report compiled from `report/REPORT.pdf`
+9. **Project video Demo Link:** **[https://drive.google.com/file/d/1w9KVaVvUY1cUY-0zcuK4IgVoC37JM39Q/view?usp=sharing]**
