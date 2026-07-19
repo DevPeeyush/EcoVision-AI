@@ -196,6 +196,19 @@ From this analysis, we establish three standard operating modes:
 * **Balanced (Youden J, $T = 0.78$)**: Equalizes sensitivity and specificity. Ideal for standard LULC auditing.
 * **High Recall (More Sensitive, $T = 0.88$)**: Catches minor transitions. Ideal for ecological conservation where any potential change must be flagged.
 
+<table style="width: 100%; border: none; margin-top: 6pt; margin-bottom: 6pt;">
+    <tr style="border: none;">
+        <td style="width: 50%; text-align: center; border: none; padding: 2pt;">
+            <img src="outputs/roc/change_detection_roc.png" width="220" height="150" />
+            <div style="font-size: 7.5pt; color: #555555; margin-top: 2pt;">Figure 1: Temporal Change Detection ROC Curve</div>
+        </td>
+        <td style="width: 50%; text-align: center; border: none; padding: 2pt;">
+            <img src="outputs/heatmaps/change_sample_0.png" width="220" height="150" />
+            <div style="font-size: 7.5pt; color: #555555; margin-top: 2pt;">Figure 2: Change Detection (JET Heatmap Overlay)</div>
+        </td>
+    </tr>
+</table>
+
 ### 6.6 Model Interpretability (GradCAM)
 To verify that the model is making decisions based on actual features (rather than background noise), we implement **Grad-CAM**. We target the final convolutional layer of ResNet18 (`backbone.layer4[-1]`). 
 First, we compute the gradient of the score for class $c$, $Y^c$, with respect to feature map activations $A^k$ of the target layer:
@@ -220,6 +233,19 @@ The training metrics confirm the superiority of transfer learning over training 
 | **Baseline CNN** | Lion | Random | 76.9% | 76.2% |
 | **ResNet18 Fine-Tuned** | Adam | Random | **96.5%** | **96.1%** |
 | **ResNet18 Fine-Tuned** | Adam | Spatial Block | 91.2% | 90.6% |
+
+<table style="width: 100%; border: none; margin-top: 6pt; margin-bottom: 6pt;">
+    <tr style="border: none;">
+        <td style="width: 50%; text-align: center; border: none; padding: 2pt;">
+            <img src="outputs/roc/resnet18_learning_curves.png" width="220" height="150" />
+            <div style="font-size: 7.5pt; color: #555555; margin-top: 2pt;">Figure 3: ResNet18 Training &amp; Validation Curves</div>
+        </td>
+        <td style="width: 50%; text-align: center; border: none; padding: 2pt;">
+            <img src="outputs/confusion_matrix/resnet18_confusion_matrix.png" width="220" height="150" />
+            <div style="font-size: 7.5pt; color: #555555; margin-top: 2pt;">Figure 4: ResNet18 Confusion Matrix (EuroSAT)</div>
+        </td>
+    </tr>
+</table>
 
 ### 7.2 Spatial Leakage Analysis
 The comparison between the random split and spatial block split models reveals a significant difference:
@@ -262,6 +288,19 @@ t-SNE and UMAP projections of the 512-dimensional feature space show distinct cl
 * **Residential** and **Industrial** clusters sit adjacent to one another with a shared boundary, reflecting their structural similarities.
 * **Highway** features form a bridge connecting residential zones and vegetation classes, reflecting their physical distribution.
 * **Pasture** and **HerbaceousVegetation** exhibit high overlap, confirming the spectral confusion identified in the error analysis.
+
+<table style="width: 100%; border: none; margin-top: 6pt; margin-bottom: 6pt;">
+    <tr style="border: none;">
+        <td style="width: 50%; text-align: center; border: none; padding: 2pt;">
+            <img src="outputs/embeddings/umap_projection.png" width="220" height="150" />
+            <div style="font-size: 7.5pt; color: #555555; margin-top: 2pt;">Figure 5: UMAP Projections of 512-dim Feature Space</div>
+        </td>
+        <td style="width: 50%; text-align: center; border: none; padding: 2pt;">
+            <img src="outputs/gradcam/gradcam_sample.png" width="220" height="150" />
+            <div style="font-size: 7.5pt; color: #555555; margin-top: 2pt;">Figure 6: GradCAM Visual Attention Overlays</div>
+        </td>
+    </tr>
+</table>
 
 ---
 

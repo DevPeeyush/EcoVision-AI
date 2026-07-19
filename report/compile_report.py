@@ -48,13 +48,13 @@ def compile_pdf(md_path, pdf_path):
             
             body {{
                 font-family: Helvetica, Arial, sans-serif;
-                font-size: 9.0pt;
-                line-height: 1.25;
+                font-size: 8.5pt;
+                line-height: 1.2;
                 color: #222222;
             }}
             
             h1 {{
-                font-size: 15pt;
+                font-size: 14pt;
                 text-align: center;
                 margin-top: 0pt;
                 margin-bottom: 4pt;
@@ -63,9 +63,9 @@ def compile_pdf(md_path, pdf_path):
             }}
             
             h2 {{
-                font-size: 10.5pt;
-                margin-top: 10pt;
-                margin-bottom: 4pt;
+                font-size: 10.0pt;
+                margin-top: 8pt;
+                margin-bottom: 3pt;
                 color: #113366;
                 font-weight: bold;
                 border-bottom: 0.5pt solid #336699;
@@ -73,16 +73,16 @@ def compile_pdf(md_path, pdf_path):
             }}
             
             h3 {{
-                font-size: 9.5pt;
-                margin-top: 8pt;
-                margin-bottom: 3pt;
+                font-size: 9.0pt;
+                margin-top: 6pt;
+                margin-bottom: 2.5pt;
                 color: #222222;
                 font-weight: bold;
             }}
             
             h4 {{
-                font-size: 9.0pt;
-                margin-top: 6pt;
+                font-size: 8.5pt;
+                margin-top: 5pt;
                 margin-bottom: 2pt;
                 color: #444444;
                 font-weight: bold;
@@ -193,13 +193,30 @@ def compile_pdf(md_path, pdf_path):
     </html>
     """
 
+    def link_callback(uri, rel):
+        import os
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        if uri.startswith("http://") or uri.startswith("https://"):
+            return uri
+        # Clean and resolve relative to base_dir
+        cleaned_uri = uri.replace('/', os.sep).replace('\\', os.sep)
+        # Remove leading separators or relative parent directory prefixes
+        while cleaned_uri.startswith('.') or cleaned_uri.startswith(os.sep):
+            if cleaned_uri.startswith('..'):
+                cleaned_uri = cleaned_uri[2:]
+            else:
+                cleaned_uri = cleaned_uri[1:]
+        path = os.path.join(base_dir, cleaned_uri)
+        return path
+
     print(f"Compiling PDF to: {pdf_path}")
     os.makedirs(os.path.dirname(pdf_path), exist_ok=True)
     
     with open(pdf_path, "wb") as pdf_file:
         pisa_status = pisa.CreatePDF(
             html_template,
-            dest=pdf_file
+            dest=pdf_file,
+            link_callback=link_callback
         )
         
     if pisa_status.err:
@@ -208,6 +225,7 @@ def compile_pdf(md_path, pdf_path):
         
     print("PDF compilation successful!")
     return True
+
 
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

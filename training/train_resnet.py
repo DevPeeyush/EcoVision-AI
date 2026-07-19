@@ -8,6 +8,7 @@ root_path = Path(__file__).resolve().parent.parent
 sys.path.append(str(root_path))
 
 from configs.paths import EUROSAT_DIR, OUTPUTS_DIR
+from configs.settings import DEVICE
 from data.dataset_loader import SatelliteDatasetLoader
 from models.resnet_transfer import ResNet18Transfer
 from training.trainer import Trainer
@@ -37,7 +38,7 @@ def train_resnet():
     criterion = torch.nn.CrossEntropyLoss()
     optimizer1 = torch.optim.Adam(model.parameters(), lr=0.001)
     
-    trainer = Trainer(model, criterion, optimizer1)
+    trainer = Trainer(model, criterion, optimizer1, device=DEVICE)
     logging.info("Running Phase 1 training for 3 epochs...")
     history_phase1 = trainer.train(train_loader, val_loader, epochs=3, save_path=save_path)
     

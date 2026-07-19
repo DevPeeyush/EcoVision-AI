@@ -61,9 +61,13 @@ class DatasetDownloader:
 
     def download_eurosat(self) -> Path:
         """Downloads EuroSAT if not present."""
-        if EUROSAT_DIR.exists() and len(os.listdir(EUROSAT_DIR)) > 0:
-            logger.info(f"EuroSAT already configured at {EUROSAT_DIR}. Skipping download.")
+        if self.check_integrity(EUROSAT_DIR):
+            logger.info(f"EuroSAT already configured and verified at {EUROSAT_DIR}. Skipping download.")
             return EUROSAT_DIR
+
+        if EUROSAT_DOWNLOAD_DIR.exists():
+            logger.info(f"Cleaning up incomplete/corrupted EuroSAT directory: {EUROSAT_DOWNLOAD_DIR}")
+            shutil.rmtree(EUROSAT_DOWNLOAD_DIR)
 
         logger.info("Initializing EuroSAT download via KaggleHub...")
         try:
@@ -83,9 +87,13 @@ class DatasetDownloader:
 
     def download_ucmerced(self) -> Path:
         """Downloads UC Merced dataset if not present."""
-        if UCMERCED_DIR.exists() and len(os.listdir(UCMERCED_DIR)) > 0:
-            logger.info(f"UC Merced already configured at {UCMERCED_DIR}. Skipping download.")
+        if self.check_integrity(UCMERCED_DIR):
+            logger.info(f"UC Merced already configured and verified at {UCMERCED_DIR}. Skipping download.")
             return UCMERCED_DIR
+
+        if UCMERCED_DIR.exists():
+            logger.info(f"Cleaning up incomplete/corrupted UC Merced directory: {UCMERCED_DIR}")
+            shutil.rmtree(UCMERCED_DIR)
 
         logger.info("Initializing UC Merced download via KaggleHub...")
         try:
