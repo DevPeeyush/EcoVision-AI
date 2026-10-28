@@ -1,4 +1,5 @@
-# Satellite Image Land-Use Classifier & Temporal Change Detection
+#      EcoVision AI
+## Satellite Image Land-Use Classifier & Temporal Change Detection
 
 EcoVision AI is a production-ready, modular computer vision application designed to perform high-accuracy land-use classification and temporal change detection using satellite imagery. It leverages PyTorch transfer learning with a ResNet18 backbone, custom CNN architectures, model interpretability via GradCAM, high-dimensional embedding visualizations via t-SNE/UMAP, and an interactive Streamlit dashboard.
 
